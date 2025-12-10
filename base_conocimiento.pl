@@ -10,3 +10,16 @@
 
 recomendacion(Enfermedad, Recomendacion) :- enfermedad(Enfermedad, _, Recomendacion).
 
+enfermedades_por_sintoma(Sintoma, Enfermedad) :- tiene_sintoma(Enfermedad, Sintoma).
+
+diagnostico_categoria(Categoria, Enfermedad) :- enfermedad(Enfermedad, Categoria, _).
+
+enfermedades_cronicas(Enfermedad) :- enfermedad(Enfermedad, cronica, _).
+
+diagnostico(Sintoma, Enfermedad) :- tiene_sintoma(Enfermedad, Sintoma).
+
+coinciden_sintomas([], _).
+
+coinciden_sintomas([Head | Tail], Enfermedad) :-
+    tiene_sintoma(Enfermedad, Head),
+    coinciden_sintomas(Tail, Enfermedad).
